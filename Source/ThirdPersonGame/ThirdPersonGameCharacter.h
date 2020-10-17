@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Components/BoxComponent.h"
 #include "InteractionInterface.h"
+#include "ItemBase.h"
 #include "StatBlockComponent.h"
 #include "ThirdPersonGameCharacter.generated.h"
 
@@ -65,6 +66,7 @@ protected:
 
 	void OnInteract();
 
+	void OnAttack();
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
@@ -78,5 +80,7 @@ private:
 	UBoxComponent* InteractionBox;
 
 	IInteractionInterface* Interface = nullptr;
+
+	AItemBase* Item = nullptr;
 };
 

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Languages.h"
 #include "StatBlockComponent.generated.h"
 
 
@@ -13,11 +14,37 @@ class THIRDPERSONGAME_API UStatBlockComponent : public UActorComponent
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere)
-	float MaxHealth;
+	int16 MaxHealth;
 
 	UPROPERTY(EditAnywhere)
-	float MinHealth;
+	int16 CurrentHealth;
 
+	UPROPERTY(EditAnywhere)
+	int16 ArmorClass;
+
+	UPROPERTY(EditAnywhere)
+	int16 GroundSpeed;
+
+	UPROPERTY(EditAnywhere)
+	int8 Strength;
+
+	UPROPERTY(EditAnywhere)
+	int8 Dexterity;
+
+	UPROPERTY(EditAnywhere)
+	int8 Constitution;
+
+	UPROPERTY(EditAnywhere)
+	int8 Intelligence;
+
+	UPROPERTY(EditAnywhere)
+	int8 Wisdom;
+
+	UPROPERTY(EditAnywhere)
+	int8 Charisma;
+
+	UPROPERTY(EditAnywhere)
+	TArray<TEnumAsByte<Languages>> KnownLanguages;
 public:	
 	// Sets default values for this component's properties
 	UStatBlockComponent();
@@ -28,8 +55,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 		
 };

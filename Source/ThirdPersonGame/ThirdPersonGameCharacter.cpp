@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "ItemBase.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AThirdPersonGameCharacter
@@ -77,6 +78,9 @@ void AThirdPersonGameCharacter::SetupPlayerInputComponent(class UInputComponent*
 	// Interact with objects
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AThirdPersonGameCharacter::OnInteract);
 
+	// Attack objects
+	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &AThirdPersonGameCharacter::OnAttack);
+
 }
 
 void AThirdPersonGameCharacter::BeginPlay() {
@@ -95,8 +99,13 @@ void AThirdPersonGameCharacter::Tick(float DeltaSeconds) {
 			Interface->HideInteractionWidget();
 			Interface = nullptr;
 		}
+		if (Item) {
+			Item = nullptr;
+		}
 		return;
 	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Close to something"));
 
 	AActor* ClosestActor = OverlappingActors[0];
 
@@ -111,6 +120,7 @@ void AThirdPersonGameCharacter::Tick(float DeltaSeconds) {
 	}
 
 	Interface = Cast<IInteractionInterface>(ClosestActor);
+	Item = Cast<AItemBase>(ClosestActor);
 
 	if (Interface) {
 		Interface->ShowInteractionWidget();
@@ -159,7 +169,15 @@ void AThirdPersonGameCharacter::MoveRight(float Value)
 }
 
 void AThirdPersonGameCharacter::OnInteract() {
+	UE_LOG(LogTemp, Warning, TEXT("Interacting"))
 	if (Interface) {
 		Interface->InteractWithMe();
+	}
+}
+
+void AThirdPersonGameCharacter::OnAttack() {
+	UE_LOG(LogTemp, Warning, TEXT("Attacking"));
+	if (Item) {
+		Item->AttackMe();
 	}
 }

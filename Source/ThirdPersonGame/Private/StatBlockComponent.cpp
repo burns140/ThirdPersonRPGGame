@@ -2,15 +2,23 @@
 
 
 #include "StatBlockComponent.h"
+#include "Languages.h"
 
 // Sets default values for this component's properties
 UStatBlockComponent::UStatBlockComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	MaxHealth = 50;
+	CurrentHealth = MaxHealth;
+	ArmorClass = 10;
+	GroundSpeed = 30;
+	Strength = 10;
+	Dexterity = 10;
+	Constitution = 10;
+	Intelligence = 10;
+	Wisdom = 10;
+	Charisma = 10;
+	KnownLanguages.Add(Common);
 
-	MaxHealth = 10;
 	// ...
 }
 
@@ -24,12 +32,4 @@ void UStatBlockComponent::BeginPlay()
 	
 }
 
-
-// Called every frame
-void UStatBlockComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
 
