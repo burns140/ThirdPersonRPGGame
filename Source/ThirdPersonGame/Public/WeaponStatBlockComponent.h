@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ItemStatBlockComponent.h"
-#include "WeaponBaseComponent.generated.h"
+#include "WeaponStatBlockComponent.generated.h"
 
 /**
  * 

@@ -51,6 +51,8 @@ AThirdPersonGameCharacter::AThirdPersonGameCharacter()
 	InteractionBox->SetupAttachment(RootComponent);
 
 	StatBlock = CreateDefaultSubobject<UStatBlockComponent>(TEXT("Stat block"));
+
+	Inventory = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inventory"));
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -81,6 +83,9 @@ void AThirdPersonGameCharacter::SetupPlayerInputComponent(class UInputComponent*
 	// Attack objects
 	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &AThirdPersonGameCharacter::OnAttack);
 
+	// Pickup objects
+	PlayerInputComponent->BindAction("Pickup", IE_Pressed, this, &AThirdPersonGameCharacter::OnPickup);
+
 }
 
 void AThirdPersonGameCharacter::BeginPlay() {
@@ -104,8 +109,6 @@ void AThirdPersonGameCharacter::Tick(float DeltaSeconds) {
 		}
 		return;
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("Close to something"));
 
 	AActor* ClosestActor = OverlappingActors[0];
 
@@ -181,3 +184,16 @@ void AThirdPersonGameCharacter::OnAttack() {
 		Item->AttackMe();
 	}
 }
+
+void AThirdPersonGameCharacter::OnPickup() {
+	UE_LOG(LogTemp, Warning, TEXT("Picking up"));
+	if (Item) {
+		Inventory->PickupItem(Item);
+		Item->Destroy();
+	}
+	if (Inventory->Items.Num() > 0) {
+		Inventory->PrintInventory();
+	}
+}
+
+

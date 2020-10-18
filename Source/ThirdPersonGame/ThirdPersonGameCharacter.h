@@ -8,6 +8,7 @@
 #include "InteractionInterface.h"
 #include "ItemBase.h"
 #include "StatBlockComponent.h"
+#include "InventoryComponent.h"
 #include "ThirdPersonGameCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -25,6 +26,10 @@ class AThirdPersonGameCharacter : public ACharacter
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"));
 	class UStatBlockComponent* StatBlock;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"));
+	class UInventoryComponent* Inventory;
+
 
 public:
 	AThirdPersonGameCharacter();
@@ -67,6 +72,8 @@ protected:
 	void OnInteract();
 
 	void OnAttack();
+
+	void OnPickup();
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }

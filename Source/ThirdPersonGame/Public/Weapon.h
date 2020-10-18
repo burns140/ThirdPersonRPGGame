@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ItemBase.h"
-#include "WeaponBaseComponent.h"
+#include "WeaponStatBlockComponent.h"
 #include "Weapon.generated.h"
 
 /**
@@ -23,6 +23,6 @@ class THIRDPERSONGAME_API AWeapon : public AItemBase
 
 public:
 	AWeapon();
-
 	
+	int8 GetBaseAttack();
 };

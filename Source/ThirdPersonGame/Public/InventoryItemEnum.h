@@ -8,9 +8,7 @@
  * 
  */
 UENUM()
-enum Languages
-{
-	Common		UMETA(DisplayName = "Common"),
-	Dwarvish	UMETA(DisplayName = "Dwarvish"),
-	Elvish		UMETA(DisplayName = "Elvish")
+enum InventoryItemType {
+	BasicItem			UMETA(DisplayName = "Basic Item"),
+	Weapon				UMETA(DisplayName = "Weapon")
 };

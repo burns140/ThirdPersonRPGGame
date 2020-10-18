@@ -5,7 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ItemStatBlockComponent.h"
-#include "WeaponBaseComponent.h"
+#include "WeaponStatBlockComponent.h"
+#include "InventoryItemEnum.h"
 #include "ItemBase.generated.h"
 
 UCLASS(Abstract)
@@ -18,6 +19,9 @@ class THIRDPERSONGAME_API AItemBase : public AActor
 
 	//UPROPERTY(EditAnywhere)
 	//UWeaponBaseComponent* WeaponBase;
+
+	UPROPERTY(EditAnywhere)
+	TEnumAsByte<InventoryItemType> Type = BasicItem;
 
 	UPROPERTY(EditAnywhere)
 	FName ItemName;
@@ -39,6 +43,17 @@ public:
 	AItemBase();
 
 	void AttackMe();
+
+	FName GetItemName();
+
+	int32 GetMaxHealth();
+
+	int32 GetCurrentHealth();
+
+	int32 GetGoldValue();
+
+	InventoryItemType GetType();
+	void SetType(InventoryItemType Type);
 
 protected:
 	// Called when the game starts or when spawned

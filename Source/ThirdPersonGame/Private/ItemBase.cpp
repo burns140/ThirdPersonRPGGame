@@ -19,7 +19,6 @@ AItemBase::AItemBase()
 	MaxHealth = 50;
 	CurrentHealth = MaxHealth;
 	GoldValue = 100;
-	
 
 	//ItemStatBlock = CreateDefaultSubobject<UItemStatBlockComponent>(TEXT("Item stat block"));
 	//WeaponBase = CreateDefaultSubobject<UWeaponBaseComponent>(TEXT("Weapon stat block"));
@@ -38,10 +37,42 @@ void AItemBase::AttackMe()
 	UE_LOG(LogTemp, Warning, TEXT("I have been attacked. Health is now %d"), this->CurrentHealth);
 }
 
+FName AItemBase::GetItemName()
+{
+	return this->ItemName;
+}
+
+int32 AItemBase::GetMaxHealth()
+{
+	return this->MaxHealth;
+}
+
+int32 AItemBase::GetCurrentHealth()
+{
+	return this->CurrentHealth;
+}
+
+int32 AItemBase::GetGoldValue()
+{
+	return this->GoldValue;
+}
+
+InventoryItemType AItemBase::GetType()
+{
+	return this->Type;
+}
+
+void AItemBase::SetType(InventoryItemType SetType)
+{
+	this->Type = SetType;
+}
+
 // Called every frame
 void AItemBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
+
+
 
