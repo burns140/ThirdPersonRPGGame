@@ -3,6 +3,7 @@
 
 #include "InventoryComponent.h"
 #include "Weapon.h"
+#include "WeaponObject.h"
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()
@@ -17,29 +18,25 @@ UInventoryComponent::UInventoryComponent()
 
 void UInventoryComponent::PickupItem(AItemBase* item)
 {
-	//this->Items.Add(item);
-	FInventoryItem InventoryItem;
-	InventoryItem.ItemType = item->GetType();
-	InventoryItem.ItemName = item->GetItemName();
-	InventoryItem.MaxHealth = item->GetMaxHealth();
-	InventoryItem.CurrentHealth = item->GetCurrentHealth();
-	InventoryItem.GoldValue = item->GetGoldValue();
-
 	if (item->GetType() == Weapon) {
-		AWeapon* Weapon = nullptr;
-		Weapon = Cast<AWeapon>(item);
-		InventoryItem.BaseAttack = Weapon->GetBaseAttack();
-	}
-
-	this->Items.Add(InventoryItem);
+		UWeaponObject* temp = NewObject<UWeaponObject>();
+		AWeapon* actor = Cast<AWeapon>(item);
+		temp->Initialize(actor);
+		this->Items.Add(temp);
+	}	
+	
 }
 
 void UInventoryComponent::PrintInventory()
 {
-	//FInventoryItem* InvPtr;
 	UE_LOG(LogTemp, Warning, TEXT("Inventory size: %d"), Items.Num());
 	for (auto& thisItem : Items) {
-		UE_LOG(LogTemp, Warning, TEXT("\n%s"), *(thisItem.ToString()));
+		if (thisItem->GetType() == Weapon) {
+			UE_LOG(LogTemp, Warning, TEXT("Casted to weapon"));
+			UWeaponObject* temp = Cast<UWeaponObject>(thisItem);
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *(temp->ToString()));
+		}
+		
 	}
 }
 

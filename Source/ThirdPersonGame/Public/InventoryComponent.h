@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "ItemBase.h"
 #include "InventoryItemStruct.h"
+#include "ItemBaseObject.h"
 #include "InventoryComponent.generated.h"
 
 
@@ -31,7 +32,7 @@ public:
 	FInventoryItem EquippedBoots;
 
 	UPROPERTY(EditAnywhere)
-	TArray<FInventoryItem> Items;
+	TArray<UItemBaseObject*> Items;
 
 	UFUNCTION()
 	void PickupItem(AItemBase* item);

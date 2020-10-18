@@ -9,6 +9,6 @@
  */
 UENUM()
 enum InventoryItemType {
-	BasicItem			UMETA(DisplayName = "Basic Item"),
+	WorldItem			UMETA(DisplayName = "World Item"),
 	Weapon				UMETA(DisplayName = "Weapon")
 };

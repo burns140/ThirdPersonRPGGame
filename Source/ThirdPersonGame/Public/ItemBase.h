@@ -21,7 +21,7 @@ class THIRDPERSONGAME_API AItemBase : public AActor
 	//UWeaponBaseComponent* WeaponBase;
 
 	UPROPERTY(EditAnywhere)
-	TEnumAsByte<InventoryItemType> Type = BasicItem;
+	TEnumAsByte<InventoryItemType> Type = WorldItem;
 
 	UPROPERTY(EditAnywhere)
 	FName ItemName;
