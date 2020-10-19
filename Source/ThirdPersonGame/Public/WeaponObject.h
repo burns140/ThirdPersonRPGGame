@@ -10,7 +10,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable, BlueprintType)
 class THIRDPERSONGAME_API UWeaponObject : public UItemBaseObject
 {
 	GENERATED_BODY()
@@ -19,7 +19,11 @@ class THIRDPERSONGAME_API UWeaponObject : public UItemBaseObject
 	int8 BaseAttack;
 
 public:
-	void Initialize(AWeapon* Weapon);
+	void Initialize(AWeapon* WeaponActor);
+
+	void Initialize(UWeaponAsset* WeaponAsset);
 
 	FString ToString();
+
+	int8 GetBaseAttack();
 };

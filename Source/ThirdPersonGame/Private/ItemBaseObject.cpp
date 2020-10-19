@@ -12,6 +12,14 @@ void UItemBaseObject::Initialize(AItemBase* ItemBase)
 	this->GoldValue = ItemBase->GetGoldValue();
 }
 
+void UItemBaseObject::Initialize(UItemBaseAsset* ItemBaseAsset)
+{
+	this->ItemName = ItemBaseAsset->ItemName;
+	this->MaxHealth = ItemBaseAsset->MaxHealth;
+	this->CurrentHealth = ItemBaseAsset->CurrentHealth;
+	this->GoldValue = ItemBaseAsset->GoldValue;
+}
+
 FString UItemBaseObject::ToString()
 {
 	TArray<FStringFormatArg> args;

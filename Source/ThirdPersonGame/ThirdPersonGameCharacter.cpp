@@ -180,8 +180,9 @@ void AThirdPersonGameCharacter::OnInteract() {
 
 void AThirdPersonGameCharacter::OnAttack() {
 	UE_LOG(LogTemp, Warning, TEXT("Attacking"));
-	if (Item) {
-		Item->AttackMe();
+	if (Item && Inventory->EquippedWeapon) {
+		int32 Damage = Inventory->EquippedWeapon->GetBaseAttack();
+		Item->AttackMe(Damage);
 	}
 }
 

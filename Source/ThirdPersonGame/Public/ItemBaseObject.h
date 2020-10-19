@@ -6,6 +6,8 @@
 #include "UObject/NoExportTypes.h"
 #include "ItemBase.h"
 #include "InventoryItemEnum.h"
+#include "WeaponAsset.h"
+#include "ItemBaseAsset.h"
 #include "ItemBaseObject.generated.h"
 
 /**
@@ -31,6 +33,8 @@ class THIRDPERSONGAME_API UItemBaseObject : public UObject
 
 public:
 	void Initialize(AItemBase* ItemBase);
+
+	void Initialize(UItemBaseAsset* ItemBaseAsset);
 
 	FString ToString();
 

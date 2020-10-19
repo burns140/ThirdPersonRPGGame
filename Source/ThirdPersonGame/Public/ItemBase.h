@@ -42,7 +42,7 @@ public:
 	// Sets default values for this actor's properties
 	AItemBase();
 
-	void AttackMe();
+	void AttackMe(int32 Damage);
 
 	FName GetItemName();
 

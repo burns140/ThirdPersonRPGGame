@@ -7,6 +7,8 @@
 #include "ItemBase.h"
 #include "InventoryItemStruct.h"
 #include "ItemBaseObject.h"
+#include "WeaponObject.h"
+#include "WeaponAsset.h"
 #include "InventoryComponent.generated.h"
 
 
@@ -20,7 +22,10 @@ public:
 	UInventoryComponent();
 
 	UPROPERTY(EditAnywhere)
-	FInventoryItem EquippedWeapon;
+	UWeaponObject* EquippedWeapon;
+
+	UPROPERTY(EditAnywhere)
+	UWeaponAsset* InitializeWeapon;
 
 	UPROPERTY(EditAnywhere)
 	FInventoryItem EquippedHelmet;
@@ -42,9 +47,5 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
-public:	
-
-
 		
 };

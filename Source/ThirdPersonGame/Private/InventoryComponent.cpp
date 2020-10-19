@@ -23,6 +23,7 @@ void UInventoryComponent::PickupItem(AItemBase* item)
 		AWeapon* actor = Cast<AWeapon>(item);
 		temp->Initialize(actor);
 		this->Items.Add(temp);
+		this->EquippedWeapon = temp;
 	}	
 	
 }
@@ -45,6 +46,8 @@ void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	this->EquippedWeapon = NewObject<UWeaponObject>();
+	this->EquippedWeapon->Initialize(this->InitializeWeapon);
 	// ...	
 }
 

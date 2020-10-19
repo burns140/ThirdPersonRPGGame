@@ -2,6 +2,7 @@
 
 
 #include "ItemBase.h"
+#include "Weapon.h"
 
 // Sets default values
 AItemBase::AItemBase()
@@ -19,9 +20,6 @@ AItemBase::AItemBase()
 	MaxHealth = 50;
 	CurrentHealth = MaxHealth;
 	GoldValue = 100;
-
-	//ItemStatBlock = CreateDefaultSubobject<UItemStatBlockComponent>(TEXT("Item stat block"));
-	//WeaponBase = CreateDefaultSubobject<UWeaponBaseComponent>(TEXT("Weapon stat block"));
 }
 
 // Called when the game starts or when spawned
@@ -31,10 +29,13 @@ void AItemBase::BeginPlay()
 	
 }
 
-void AItemBase::AttackMe()
+void AItemBase::AttackMe(int32 Damage)
 {
-	this->CurrentHealth -= 10;
+	this->CurrentHealth -= Damage;
 	UE_LOG(LogTemp, Warning, TEXT("I have been attacked. Health is now %d"), this->CurrentHealth);
+	if (this->CurrentHealth <= 0) {
+		this->Destroy();
+	}
 }
 
 FName AItemBase::GetItemName()
